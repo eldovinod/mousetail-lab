@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mousetail | AI Research Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FFE3D3; /* Matches image_54c2a3.png background */
+            --accent-orange: #FF6B35; /* Matches mouse outline */
+            --dark-text: #121212; /* Matches whiskers/eye */
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 227, 211, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--accent-orange);
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: color 0.3s ease;
+        }
+
+        .dropbtn:hover {
+            color: var(--accent-orange);
+        }
+
+        .dropbtn::after {
+            content: '▾';
+            font-size: 0.8rem;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 160px;
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: var(--dark-text);
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--bg-color);
+            color: var(--accent-orange);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 4rem;
+            margin-top: 4rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.85;
+            max-width: 600px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--dark-text);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .hero-image-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            header { padding: 1.5rem 2rem; }
+            .hero { padding: 0 2rem; }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { margin: 0 auto 2rem auto; }
+            nav { gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Logo and Brand Name Linking to Home -->
+        <a href="#" class="logo-container">
+            <img src="image_54c2a3.png" alt="mousetail logo">
+            <span>mousetail</span>
+        </a>
+
+        <!-- Navigation Headings with Dropdowns -->
+        <nav>
+            <div class="dropdown">
+                <button class="dropbtn">About</button>
+                <div class="dropdown-content">
+                    <a href="#">Our Mission</a>
+                    <a href="#">The Lab</a>
+                    <a href="#">Careers</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropbtn">Research</button>
+                <div class="dropdown-content">
+                    <a href="#">Publications</a>
+                    <a href="#">Open Source</a>
+                    <a href="#">Datasets</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Products</button>
+                <div class="dropdown-content">
+                    <a href="#">API Access</a>
+                    <a href="#">Custom Models</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="hero">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <h1>Nimble models.<br>Fundamental research.</h1>
+                <p>Mousetail is a mini AI research lab specializing in highly efficient, beautifully architected neural networks designed to push boundaries without requiring corporate-scale infrastructure.</p>
+                <a href="#" class="cta-btn">Read our latest paper</a>
+            </div>
+            <div class="hero-image-container">
+                <!-- Large rendering of your branding asset -->
+                <img src="image_54c2a3.png" alt="mousetail AI asset">
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
