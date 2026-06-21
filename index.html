@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FFE3D3; /* Matches image_54c2a3.png background */
-            --accent-orange: #FF6B35; /* Matches mouse outline */
-            --dark-text: #121212; /* Matches whiskers/eye */
+            --bg-color: #FFE3D3;
+            --accent-orange: #FF6B35;
+            --dark-text: #121212;
             --white: #ffffff;
         }
 
@@ -58,8 +58,8 @@
             height: 40px;
             width: 40px;
             object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid var(--accent-orange);
+            border-radius: 0;
+            border: none;
         }
 
         nav {
@@ -71,6 +71,12 @@
             position: relative;
             display: inline-block;
         }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
 
         .dropbtn {
             background: none;
@@ -102,9 +108,12 @@
             min-width: 160px;
             box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
             border-radius: 8px;
-            margin-top: 0.5rem;
-            overflow: hidden;
-            z-index: 1;
+            margin-top: -0.25rem;
+            padding-top: 0.5rem;
+            overflow: visible;
+            z-index: 1001;
+            top: 100%;
+            left: 0;
         }
 
         .dropdown-content a {
@@ -114,6 +123,7 @@
             display: block;
             font-size: 0.95rem;
             transition: background 0.2s ease, color 0.2s ease;
+            cursor: pointer;
         }
 
         .dropdown-content a:hover {
@@ -123,6 +133,11 @@
 
         .dropdown:hover .dropdown-content {
             display: block;
+        }
+
+        .dropdown-content a:active {
+            background-color: var(--accent-orange);
+            color: var(--white);
         }
 
         /* --- HERO SECTION --- */
@@ -136,7 +151,7 @@
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: 1fr 1.2fr;
             gap: 4rem;
             align-items: center;
             width: 100%;
@@ -180,9 +195,115 @@
 
         .hero-image-container img {
             width: 100%;
-            max-width: 450px;
+            max-width: 700px;
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        /* Canvas container styling */
+        .hero-chart-container {
+            width: 100%;
+            max-width: 700px;
+            height: 640px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            overflow: hidden;
+            background: var(--white);
+            position: relative;
+            display: block;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-section {
+            background-color: var(--white);
+            padding: 4rem 4rem;
+            margin-top: 4rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .contact-section > div > p {
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 3rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-column {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .menu-column h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-orange);
+        }
+
+        .menu-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .menu-column a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .menu-column a:hover {
+            color: var(--accent-orange);
+        }
+
+        .contact-info {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--bg-color);
+            border-radius: 12px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--accent-orange);
+            color: var(--white);
+            padding: 0.8rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #E55A2B;
+            transform: translateY(-2px);
         }
 
         /* Responsive Design */
@@ -197,14 +318,25 @@
             .hero-text h1 { font-size: 2.5rem; }
             .hero-text p { margin: 0 auto 2rem auto; }
             nav { gap: 1.5rem; }
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .contact-section {
+                padding: 2rem 2rem;
+            }
+            .contact-section h2 {
+                font-size: 1.8rem;
+            }
         }
     </style>
+
 </head>
 <body>
 
     <header>
         <!-- Logo and Brand Name Linking to Home -->
-        <a href="#" class="logo-container">
+        <a href="index.html" class="logo-container">
             <img src="image_54c2a3.png" alt="mousetail logo">
             <span>mousetail</span>
         </a>
@@ -214,26 +346,27 @@
             <div class="dropdown">
                 <button class="dropbtn">About</button>
                 <div class="dropdown-content">
-                    <a href="#">Our Mission</a>
-                    <a href="#">The Lab</a>
-                    <a href="#">Careers</a>
+                    <a href="our-mission.html">Our Mission</a>
+                    <a href="the-lab.html">The Lab</a>
+                    <a href="careers.html">Careers</a>
                 </div>
             </div>
             
             <div class="dropdown">
                 <button class="dropbtn">Research</button>
                 <div class="dropdown-content">
-                    <a href="#">Publications</a>
-                    <a href="#">Open Source</a>
-                    <a href="#">Datasets</a>
+                    <a href="publications.html">Publications</a>
+                    <a href="open-source.html">Open Source</a>
+                    <a href="datasets.html">Datasets</a>
                 </div>
             </div>
 
             <div class="dropdown">
-                <button class="dropbtn">Products</button>
+                <button class="dropbtn">Asset Class</button>
                 <div class="dropdown-content">
-                    <a href="#">API Access</a>
-                    <a href="#">Custom Models</a>
+                    <a href="commodities.html">Commodities</a>
+                    <a href="fixed-income.html">Fixed Income</a>
+                    <a href="equities.html">Equities</a>
                 </div>
             </div>
         </nav>
@@ -243,16 +376,124 @@
     <main class="hero">
         <div class="hero-grid">
             <div class="hero-text">
-                <h1>Nimble models.<br>Fundamental research.</h1>
-                <p>Mousetail is a mini AI research lab specializing in highly efficient, beautifully architected neural networks designed to push boundaries without requiring corporate-scale infrastructure.</p>
-                <a href="#" class="cta-btn">Read our latest paper</a>
+                <h1>Data Driven Investment Analysis</h1>
+                <p>We use the latest machine learning techniques to drive fundamental analysis into key asset classes.</p>
+                <a href="publications.html" class="cta-btn">Read our latest paper</a>
             </div>
             <div class="hero-image-container">
-                <!-- Large rendering of your branding asset -->
-                <img src="image_54c2a3.png" alt="mousetail AI asset">
+                <h2 class="sr-only">Animated map of the Strait of Hormuz showing simplified coastlines of Iran, the United Arab Emirates and Oman, with ships flowing in two lanes through the strait: inbound toward the Persian Gulf and outbound toward the Gulf of Oman.</h2>
+                <style>
+                .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+                .hero-chart-container{overflow:hidden;display:block;}
+                #hormuz-water{fill:#D7ECF3}
+                #hormuz-iran,#hormuz-arabia{fill:#E4D9C5;stroke:#8c7d5c;stroke-width:1;stroke-opacity:0.7}
+                @media (prefers-color-scheme:dark){
+                #hormuz-water{fill:#15303a}
+                #hormuz-iran,#hormuz-arabia{fill:#3a3326}
+                }
+                </style>
+                <svg width="100%" height="100%" viewBox="0 0 680 760" preserveAspectRatio="xMidYMid slice" class="hero-chart-container">
+                <defs>
+                <marker id="hzArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+                </defs>
+                <rect id="hormuz-water" x="0" y="0" width="680" height="760"/>
+                <path id="hormuz-iran" d="M0,0 H680 V120 C610,108 560,92 520,112 C480,132 460,160 445,188 C432,212 420,238 408,262 C400,278 390,290 378,300 L362,300 C352,288 342,272 330,250 C310,215 270,195 215,190 C155,184 95,165 40,140 C25,133 10,126 0,120 Z"/>
+                <path id="hormuz-arabia" d="M0,720 H680 V600 C640,580 600,592 565,572 C540,558 525,538 515,512 C505,488 495,462 480,442 C468,427 455,415 440,405 L440,390 C436,378 428,372 415,370 L355,370 C342,372 334,378 330,390 L330,405 C318,415 305,427 290,442 C265,468 230,490 185,505 C135,521 80,512 40,525 C20,532 8,542 0,552 Z"/>
+                <path id="laneIn" d="M610,520 C540,470 480,420 450,385 C430,362 410,345 385,332 C340,310 250,300 140,295" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="6 5" opacity="0.55" marker-end="url(#hzArrow)"/>
+                <path id="laneOut" d="M140,330 C250,332 340,340 385,360 C410,372 432,388 455,408 C485,440 545,480 610,545" fill="none" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="6 5" opacity="0.55" marker-end="url(#hzArrow)"/>
+                <g><polygon points="-7,-4 7,0 -7,4" fill="#0F6E56"/><animateMotion dur="16s" repeatCount="indefinite" rotate="auto" begin="0s"><mpath href="#laneIn"/></animateMotion></g>
+                <g><polygon points="-7,-4 7,0 -7,4" fill="#0F6E56"/><animateMotion dur="16s" repeatCount="indefinite" rotate="auto" begin="-4s"><mpath href="#laneIn"/></animateMotion></g>
+                <g><polygon points="-7,-4 7,0 -7,4" fill="#0F6E56"/><animateMotion dur="16s" repeatCount="indefinite" rotate="auto" begin="-8s"><mpath href="#laneIn"/></animateMotion></g>
+                <g><polygon points="-7,-4 7,0 -7,4" fill="#0F6E56"/><animateMotion dur="16s" repeatCount="indefinite" rotate="auto" begin="-12s"><mpath href="#laneIn"/></animateMotion></g>
+                <g><polygon points="-7,-4 7,0 -7,4" fill="#993C1D"/><animateMotion dur="16s" repeatCount="indefinite" rotate="auto" begin="-2s"><mpath href="#laneOut"/></animateMotion></g>
+                <g><polygon points="-7,-4 7,0 -7,4" fill="#993C1D"/><animateMotion dur="16s" repeatCount="indefinite" rotate="auto" begin="-6s"><mpath href="#laneOut"/></animateMotion></g>
+                <g><polygon points="-7,-4 7,0 -7,4" fill="#993C1D"/><animateMotion dur="16s" repeatCount="indefinite" rotate="auto" begin="-10s"><mpath href="#laneOut"/></animateMotion></g>
+                <g><polygon points="-7,-4 7,0 -7,4" fill="#993C1D"/><animateMotion dur="16s" repeatCount="indefinite" rotate="auto" begin="-14s"><mpath href="#laneOut"/></animateMotion></g>
+                <text class="th" x="330" y="55" text-anchor="middle">Iran</text>
+                <text class="th" x="150" y="400" text-anchor="middle">Persian Gulf</text>
+                <text class="th" x="585" y="420" text-anchor="middle">Gulf of Oman</text>
+                <text class="th" x="220" y="490" text-anchor="middle">United Arab Emirates</text>
+                <text class="th" x="565" y="650" text-anchor="middle">Oman</text>
+                <line x1="440" y1="312" x2="488" y2="296" stroke="var(--color-text-tertiary)" stroke-width="0.5" stroke-dasharray="2 2"/>
+                <text class="ts" x="492" y="298" text-anchor="start">Strait of Hormuz</text>
+                <line x1="412" y1="378" x2="492" y2="358" stroke="var(--color-text-tertiary)" stroke-width="0.5" stroke-dasharray="2 2"/>
+                <text class="ts" x="496" y="361" text-anchor="start">Musandam (Oman)</text>
+                <circle cx="400" cy="250" r="3" fill="var(--color-text-primary)"/>
+                <text class="ts" x="408" y="253" text-anchor="start">Bandar Abbas</text>
+                <circle cx="140" cy="545" r="3" fill="var(--color-text-primary)"/>
+                <text class="ts" x="147" y="548" text-anchor="start">Dubai</text>
+                <circle cx="70" cy="605" r="3" fill="var(--color-text-primary)"/>
+                <circle cx="70" cy="605" r="6" fill="none" stroke="var(--color-text-primary)" stroke-width="1"/>
+                <text class="ts" x="80" y="608" text-anchor="start">Abu Dhabi</text>
+                <circle cx="455" cy="440" r="3" fill="var(--color-text-primary)"/>
+                <text class="ts" x="462" y="443" text-anchor="start">Fujairah</text>
+                <circle cx="590" cy="690" r="3" fill="var(--color-text-primary)"/>
+                <circle cx="590" cy="690" r="6" fill="none" stroke="var(--color-text-primary)" stroke-width="1"/>
+                <text class="ts" x="600" y="693" text-anchor="start">Muscat</text>
+                <text class="ts" x="645" y="38" text-anchor="middle">N</text>
+                </svg>
+                <script>
+                function hzToggle(){
+                var svg = document.querySelector('svg');
+                var btn = document.getElementById('hzBtn');
+                if(!svg.__hzPaused){
+                try{ svg.pauseAnimations(); }catch(e){}
+                svg.__hzPaused = true;
+                btn.innerHTML = '<i class="ti ti-player-play" aria-hidden="true"></i> Play';
+                } else {
+                try{ svg.unpauseAnimations(); }catch(e){}
+                svg.__hzPaused = false;
+                btn.innerHTML = '<i class="ti ti-player-pause" aria-hidden="true"></i> Pause';
+                }
+                }
+                </script>
             </div>
         </div>
     </main>
+
+    <!-- Contact & Menu Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h2>Get in Touch & Explore</h2>
+            <p>Discover our research, labs, and opportunities across various asset classes.</p>
+            
+            <div class="menu-grid">
+                <div class="menu-column">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="our-mission.html">Our Mission</a></li>
+                        <li><a href="the-lab.html">The Lab</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="menu-column">
+                    <h3>Research</h3>
+                    <ul>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="open-source.html">Open Source</a></li>
+                        <li><a href="datasets.html">Datasets</a></li>
+                    </ul>
+                </div>
+                
+                <div class="menu-column">
+                    <h3>Asset Class</h3>
+                    <ul>
+                        <li><a href="commodities.html">Commodities</a></li>
+                        <li><a href="fixed-income.html">Fixed Income</a></li>
+                        <li><a href="equities.html">Equities</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <p>Have questions? We'd love to hear from you.</p>
+                <a href="mailto:contact@mousetail.com" class="contact-btn">Contact Us</a>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
