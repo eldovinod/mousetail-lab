@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crude Oil — Mousetail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FFE3D3;
+            --accent-orange: #FF6B35;
+            --dark-text: #121212;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 227, 211, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        .logo-container img { height: 40px; width: 40px; }
+
+        nav { display: flex; gap: 2.5rem; }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn {
+            background: none; border: none; color: var(--dark-text);
+            font-size: 1rem; font-weight: 500; cursor: pointer;
+            padding: 0.5rem 0; display: flex; align-items: center; gap: 0.25rem;
+        }
+        .dropbtn::after { content: '▾'; font-size: 0.8rem; }
+        .dropdown-content {
+            display: none; position: absolute; background-color: var(--white);
+            min-width: 160px; box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
+            border-radius: 8px; top: 100%; left: 0; padding-top: 0.5rem;
+        }
+        .dropdown-content a {
+            color: var(--dark-text); padding: 0.75rem 1rem;
+            text-decoration: none; display: block; font-size: 0.95rem;
+        }
+        .dropdown-content a:hover { background-color: var(--bg-color); color: var(--accent-orange); }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* Nested Dropdown */
+        .nested-dropdown { position: relative; }
+        .nested-content {
+            display: none; position: absolute; left: 100%; top: 0;
+            background-color: var(--white); min-width: 160px;
+            box-shadow: 8px 8px 24px rgba(0,0,0,0.08); border-radius: 8px;
+        }
+        .nested-dropdown:hover .nested-content { display: block; }
+        .nested-dropdown a { display: flex; justify-content: space-between; align-items: center; }
+
+        main { padding: 8rem 2rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .page-header { text-align: center; margin-bottom: 4rem; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .commodity-section { background: var(--white); border-radius: 24px; padding: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .chart-container { height: 600px; width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid #eee; }
+
+        .contact-section { background-color: var(--white); padding: 4rem; margin-top: 4rem; }
+        .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 3rem; }
+        .menu-column { background-color: var(--bg-color); padding: 2rem; border-radius: 12px; }
+        .menu-column h3 { color: var(--accent-orange); margin-bottom: 1.5rem; }
+        .menu-column ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .menu-column a { color: var(--dark-text); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            header { padding: 1.5rem 2rem; }
+            nav { display: none; }
+            .menu-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="image_54c2a3.png" alt="mousetail logo">
+            <span>mousetail</span>
+        </a>
+        <nav>
+            <div class="dropdown">
+                <button class="dropbtn">About</button>
+                <div class="dropdown-content">
+                    <a href="our-mission.html">Our Mission</a>
+                    <a href="the-lab.html">The Lab</a>
+                    <a href="careers.html">Careers</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Research</button>
+                <div class="dropdown-content">
+                    <a href="publications.html">Publications</a>
+                    <a href="open-source.html">Open Source</a>
+                    <a href="datasets.html">Datasets</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Asset Class</button>
+                <div class="dropdown-content">
+                    <div class="nested-dropdown">
+                        <a href="commodities.html">Commodities <span>▸</span></a>
+                        <div class="nested-content">
+                            <a href="gold.html">Gold</a>
+                            <a href="crude.html">Crude Oil</a>
+                            <a href="lng.html">LNG</a>
+                        </div>
+                    </div>
+                    <a href="fixed-income.html">Fixed Income</a>
+                    <a href="equities.html">Equities</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>Crude Oil Analysis</h1>
+            <p>Live market data and price analysis for WTI Crude Oil (USOIL).</p>
+        </div>
+        <section class="commodity-section">
+            <div class="chart-container">
+                <div id="tradingview_crude" style="height: 100%; width: 100%;"></div>
+            </div>
+        </section>
+    </main>
+
+    <section class="contact-section">
+        <div class="menu-grid">
+            <div class="menu-column">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="the-lab.html">The Lab</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3>Research</h3>
+                <ul>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="open-source.html">Open Source</a></li>
+                    <li><a href="datasets.html">Datasets</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3>Asset Class</h3>
+                <ul>
+                    <li><a href="commodities.html">Commodities</a></li>
+                    <li><a href="fixed-income.html">Fixed Income</a></li>
+                    <li><a href="equities.html">Equities</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        new TradingView.widget({
+            "autosize": true,
+            "symbol": "TVC:USOIL",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "light",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "hide_top_toolbar": false,
+            "save_image": false,
+            "container_id": "tradingview_crude"
+        });
+    </script>
+</body>
+</html>

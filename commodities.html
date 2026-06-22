@@ -1,17 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Commodities — Mousetail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; padding: 2rem; }
-        a { color: #FF6B35; text-decoration: none; }
+        :root {
+            --bg-color: #FFE3D3;
+            --accent-orange: #FF6B35;
+            --dark-text: #121212;
+            --white: #ffffff;
+            --gray-bg: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 227, 211, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: color 0.3s ease;
+        }
+
+        .dropbtn:hover {
+            color: var(--accent-orange);
+        }
+
+        .dropbtn::after {
+            content: '▾';
+            font-size: 0.8rem;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 160px;
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            margin-top: -0.25rem;
+            padding-top: 0.5rem;
+            z-index: 1001;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: var(--dark-text);
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--bg-color);
+            color: var(--accent-orange);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .commodity-section {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-orange);
+        }
+
+        .section-header p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .chart-container {
+            height: 500px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-section {
+            background-color: var(--white);
+            padding: 4rem 4rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .contact-section > div > p {
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 3rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-column {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .menu-column h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-orange);
+        }
+
+        .menu-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .menu-column a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .menu-column a:hover {
+            color: var(--accent-orange);
+        }
+
+        .contact-info {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--bg-color);
+            border-radius: 12px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--accent-orange);
+            color: var(--white);
+            padding: 0.8rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #E55A2B;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1.5rem 2rem; }
+            nav { display: none; }
+            .commodity-section { padding: 1.5rem; }
+            .chart-container { height: 400px; }
+            .menu-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <a href="index.html">← Back</a>
-    <h1>Commodities</h1>
-    <p>This page is a placeholder for the Commodities asset class.</p>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="image_54c2a3.png" alt="mousetail logo">
+            <span>mousetail</span>
+        </a>
+
+        <nav>
+            <div class="dropdown">
+                <button class="dropbtn">About</button>
+                <div class="dropdown-content">
+                    <a href="our-mission.html">Our Mission</a>
+                    <a href="the-lab.html">The Lab</a>
+                    <a href="careers.html">Careers</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropbtn">Research</button>
+                <div class="dropdown-content">
+                    <a href="publications.html">Publications</a>
+                    <a href="open-source.html">Open Source</a>
+                    <a href="datasets.html">Datasets</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Asset Class</button>
+                <div class="dropdown-content">
+                    <a href="commodities.html">Commodities</a>
+                    <a href="fixed-income.html">Fixed Income</a>
+                    <a href="equities.html">Equities</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>Commodities</h1>
+            <p>Live market data and analysis for key global commodities, providing insights into energy and precious metals.</p>
+        </div>
+
+        <!-- Gold Section -->
+        <section class="commodity-section">
+            <div class="section-header">
+                <h2>Gold</h2>
+                <p>Spot price for Gold (XAU/USD) - The ultimate safe-haven asset.</p>
+            </div>
+            <div class="chart-container">
+                <div id="tradingview_gold" style="height: 100%; width: 100%;"></div>
+            </div>
+        </section>
+
+        <!-- Crude Oil Section -->
+        <section class="commodity-section">
+            <div class="section-header">
+                <h2>Crude Oil</h2>
+                <p>WTI Crude Oil Spot Price - Global benchmark for the energy sector.</p>
+            </div>
+            <div class="chart-container">
+                <div id="tradingview_crude" style="height: 100%; width: 100%;"></div>
+            </div>
+        </section>
+
+        <!-- LNG Section -->
+        <section class="commodity-section">
+            <div class="section-header">
+                <h2>LNG</h2>
+                <p>Natural Gas (LNG Proxy) - Key indicator for global liquefied natural gas markets.</p>
+            </div>
+            <div class="chart-container">
+                <div id="tradingview_lng" style="height: 100%; width: 100%;"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact & Menu Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h2>Explore Further</h2>
+            <p>Continue your journey through our research and asset class analysis.</p>
+            
+            <div class="menu-grid">
+                <div class="menu-column">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="our-mission.html">Our Mission</a></li>
+                        <li><a href="the-lab.html">The Lab</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="menu-column">
+                    <h3>Research</h3>
+                    <ul>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="open-source.html">Open Source</a></li>
+                        <li><a href="datasets.html">Datasets</a></li>
+                    </ul>
+                </div>
+                
+                <div class="menu-column">
+                    <h3>Asset Class</h3>
+                    <ul>
+                        <li><a href="commodities.html">Commodities</a></li>
+                        <li><a href="fixed-income.html">Fixed Income</a></li>
+                        <li><a href="equities.html">Equities</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <p>Interested in our datasets? Contact our team for access.</p>
+                <a href="mailto:contact@mousetail.com" class="contact-btn">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TradingView Widget Scripts -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        new TradingView.widget({
+            "autosize": true,
+            "symbol": "TVC:GOLD",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "light",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "hide_top_toolbar": true,
+            "save_image": false,
+            "container_id": "tradingview_gold"
+        });
+
+        new TradingView.widget({
+            "autosize": true,
+            "symbol": "TVC:USOIL",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "light",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "hide_top_toolbar": true,
+            "save_image": false,
+            "container_id": "tradingview_crude"
+        });
+
+        new TradingView.widget({
+            "autosize": true,
+            "symbol": "NYMEX:NG1!",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": "light",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "hide_top_toolbar": true,
+            "save_image": false,
+            "container_id": "tradingview_lng"
+        });
+    </script>
 </body>
 </html>
