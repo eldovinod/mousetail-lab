@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Safety — Mousetail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FFE3D3;
+            --accent-orange: #FF6B35;
+            --dark-text: #121212;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 227, 211, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 0;
+            border: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: color 0.3s ease;
+        }
+
+        .dropbtn:hover {
+            color: var(--accent-orange);
+        }
+
+        .dropbtn::after {
+            content: '▾';
+            font-size: 0.8rem;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 160px;
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: var(--dark-text);
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--bg-color);
+            color: var(--accent-orange);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .content {
+            min-height: 100vh;
+            padding: 8rem 4rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            margin: 2rem 0 1rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+        }
+
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.85;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-orange);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--dark-text);
+        }
+
+        @media (max-width: 968px) {
+            header { padding: 1.5rem 2rem; }
+            .content { padding: 8rem 2rem 4rem; }
+            h1 { font-size: 2rem; }
+            nav { gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="image_54c2a3.png" alt="mousetail logo">
+            <span>mousetail</span>
+        </a>
+
+        <nav>
+            <div class="dropdown">
+                <button class="dropbtn">About</button>
+                <div class="dropdown-content">
+                    <a href="our-mission.html">Our Mission</a>
+                    <a href="the-lab.html">The Lab</a>
+                    <a href="careers.html">Careers</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropbtn">Research</button>
+                <div class="dropdown-content">
+                    <a href="vision.html">Vision</a>
+                    <a href="nlp.html">NLP</a>
+                    <a href="safety.html">Safety</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">Asset Class</button>
+                <div class="dropdown-content">
+                    <a href="commodities.html">Commodities</a>
+                    <a href="fixed-income.html">Fixed Income</a>
+                    <a href="equities.html">Equities</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <h1>Safety</h1>
+        <p>Our safety research ensures that models used in investment analysis are reliable, well-calibrated, and deployed responsibly. In high-stakes financial settings, robustness and transparency are not optional—they are core requirements.</p>
+
+        <h2>Research Focus</h2>
+        <ul>
+            <li>Monitoring for distribution shift, model drift, and degraded performance over time</li>
+            <li>Uncertainty estimation and calibration for probabilistic forecasts</li>
+            <li>Adversarial robustness and stress testing under extreme market conditions</li>
+            <li>Governance frameworks for evaluating and deploying AI in production systems</li>
+        </ul>
+
+        <p>Safety work runs across all of our research areas. We build the guardrails that make machine learning trustworthy enough to inform real investment decisions.</p>
+    </main>
+
+</body>
+</html>
