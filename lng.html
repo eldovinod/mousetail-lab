@@ -62,6 +62,8 @@
             padding: 0.5rem 0; display: flex; align-items: center; gap: 0.25rem;
         }
         .dropbtn::after { content: '▾'; font-size: 0.8rem; }
+        .nav-link { color: var(--dark-text); font-size: 1rem; font-weight: 500; text-decoration: none; padding: 0.5rem 0; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--accent-orange); }
         .dropdown-content {
             display: none; position: absolute; background-color: var(--white);
             min-width: 160px; box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
@@ -122,9 +124,9 @@
             <div class="dropdown">
                 <button class="dropbtn">Research</button>
                 <div class="dropdown-content">
-                    <a href="publications.html">Publications</a>
-                    <a href="open-source.html">Open Source</a>
-                    <a href="datasets.html">Datasets</a>
+                    <a href="vision.html">Vision</a>
+                    <a href="nlp.html">NLP</a>
+                    <a href="safety.html">Safety</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -142,6 +144,8 @@
                     <a href="equities.html">Equities</a>
                 </div>
             </div>
+
+            <a href="etf-optimization.html" class="nav-link">ETF Optimization</a>
         </nav>
     </header>
 
@@ -170,9 +174,9 @@
             <div class="menu-column">
                 <h3>Research</h3>
                 <ul>
-                    <li><a href="publications.html">Publications</a></li>
-                    <li><a href="open-source.html">Open Source</a></li>
-                    <li><a href="datasets.html">Datasets</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="nlp.html">NLP</a></li>
+                    <li><a href="safety.html">Safety</a></li>
                 </ul>
             </div>
             <div class="menu-column">
